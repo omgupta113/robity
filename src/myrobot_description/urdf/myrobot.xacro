@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<robot name="myrobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find myrobot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find myrobot_description)/urdf/myrobot.trans" />
+<xacro:include filename="$(find myrobot_description)/urdf/myrobot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.22498968653341897 -0.1971708604333008 0.025552081628942184" rpy="0 0 0"/>
+    <mass value="9.817507351067103"/>
+    <inertia ixx="0.134699" iyy="0.163499" izz="0.293453" ixy="1.3e-05" iyz="-0.001026" ixz="4e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-0.025000000000000005 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.3652101459798134"/>
+    <inertia ixx="0.000457" iyy="0.000304" izz="0.000304" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.2 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.2 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="0.02499999999999991 0.0 3.469446951953614e-18" rpy="0 0 0"/>
+    <mass value="0.3652101459798134"/>
+    <inertia ixx="0.000457" iyy="0.000304" izz="0.000304" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.45 0.2 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.45 0.2 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="-4.857758738596729e-07 3.915492003819798e-07 0.02500000000000001" rpy="0 0 0"/>
+    <mass value="0.41626102660064757"/>
+    <inertia ixx="0.000347" iyy="0.000347" izz="0.00052" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.224514 0.06655 -0.075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.224514 0.06655 -0.075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://myrobot_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="left_joint" type="continuous">
+  <origin xyz="0.0 -0.2 0.025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+<joint name="right_joint" type="continuous">
+  <origin xyz="0.45 -0.2 0.025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Rigid" type="fixed">
+  <origin xyz="0.224514 -0.06655 0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+</robot>

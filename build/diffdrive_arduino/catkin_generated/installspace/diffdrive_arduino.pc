@@ -1,0 +1,8 @@
+prefix=/home/om/catkin_ws/install
+
+Name: diffdrive_arduino
+Description: Description of diffdrive_arduino
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

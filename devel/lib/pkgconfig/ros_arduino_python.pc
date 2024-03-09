@@ -1,0 +1,8 @@
+prefix=/home/om/catkin_ws/devel
+
+Name: ros_arduino_python
+Description: Description of ros_arduino_python
+Version: 0.2.0
+Cflags: -I/home/om/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: dynamic_reconfigure
